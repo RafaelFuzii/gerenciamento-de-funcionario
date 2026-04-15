@@ -6,4 +6,19 @@ export class FuncionarioRepository {
         return await prisma.funcionario.create({ data });
     }
 
+    async findById(id: string) {
+        return await prisma.funcionario.findUnique({ where: { id } });
+    }
+
+    async findAll() {
+        return await prisma.funcionario.findMany();
+    }
+
+    async update(id: string, data: Prisma.FuncionarioUpdateInput) {
+        return await prisma.funcionario.update({ where: { id }, data });
+    }
+
+    async delete(id: string) {
+        return await prisma.funcionario.delete({ where: { id } });
+    }
 }

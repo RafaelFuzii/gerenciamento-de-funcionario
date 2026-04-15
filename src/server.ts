@@ -1,7 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
-import { orderRoutes } from './routes';
+import { funcionarioRoutes, orderRoutes } from './routes';
 import { errorMessage } from './errors/errorMessage';
 
 const app = express();
@@ -13,6 +13,7 @@ app.use(express.json());
 
 // Registro de Rotas
 app.use('/orders', orderRoutes);
+app.use('/funcionarios', funcionarioRoutes);
 
 // MIDDLEWARE GLOBAL DE ERROS (Sempre por último)
 app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
