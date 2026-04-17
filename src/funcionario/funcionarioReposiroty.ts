@@ -21,4 +21,13 @@ export class FuncionarioRepository {
     async delete(id: string) {
         return await prisma.funcionario.delete({ where: { id } });
     }
+
+    async addDiaTrabalhado(funcionarioId: string, date: Date) {
+        return await prisma.diasTrabalhados.create({
+            data: {
+                funcionarioId,
+                date
+            }
+        });
+    }
 }

@@ -35,4 +35,11 @@ export class FuncionarioController {
         await this.funcionarioService.deletarFuncionario(id)
         res.status(204).send()
     }
+
+    async adicionarDiaTrabalhado(req: Request<{ funcionarioId: string }>, res: Response) {
+        const { funcionarioId } = req.params;
+        const { date } = req.body;
+        const diaTrabalhado = await this.funcionarioService.adicionarDiaTrabalhado(funcionarioId, date);
+        res.status(201).json(diaTrabalhado);
+    }
 }
