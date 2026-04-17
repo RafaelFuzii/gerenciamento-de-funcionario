@@ -35,4 +35,25 @@ export class FuncionarioService {
 
         return await this.funcionarioRepository.delete(id)
     }
+
+    async adicionarDiaTrabalhado(funcionarioId: string, dateString: string) {
+        const funcionario = await this.funcionarioRepository.findById(funcionarioId);
+        if (!funcionario) {
+            throw new errorMessage("Funcionário não encontrado", 404);
+        }
+
+        // Pega a string "2026/04/16" e transforma em um Objeto Date
+        const dataConvertida = new Date(dateString);
+
+        // Validação de segurança: verifica se a data enviada é realmente válida
+        if (isNaN(dataConvertida.getTime())) {
+            throw new errorMessage("Formato de data inválido. Use YYYY/MM/DD.", 400);
+        }
+
+        // Opcional: Se você quiser garantir que a hora seja zerada (00:00:00) 
+        // para não ter problemas de fuso horário
+        dataConvertida.setUTCHours(0, 0, 0, 0);
+
+        return await this.funcionarioRepository.addDiaTrabalhado(funcionarioId, dataConvertida);
+    }
 }

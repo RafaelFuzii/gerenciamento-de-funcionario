@@ -23,8 +23,18 @@ model Funcionario {
   email     String   @unique
   cpf       String   @unique
   createdAt DateTime @default(now())
+  diasTrabalhados DiasTrabalhados[]
 
   @@map("funcionarios")
+}
+
+model DiasTrabalhados {
+  id            String   @id @default(uuid())
+  funcionarioId String
+  date          DateTime
+  funcionario   Funcionario @relation(fields: [funcionarioId], references: [id])
+  
+  @@map("dias_trabalhados") 
 }
 
 enum Role {

@@ -22,6 +22,7 @@ const authController = new AuthController(authService);
 funcionarioRoutes.get('/', Authenticated, funcionarioController.listarFuncionarios.bind(funcionarioController));
 funcionarioRoutes.get('/:id', Authenticated, funcionarioController.acharFuncionario.bind(funcionarioController));
 funcionarioRoutes.post('/criar', Authenticated, funcionarioController.criarFuncionario.bind(funcionarioController));
+funcionarioRoutes.post('/adicionar-dia/:funcionarioId', Authenticated, funcionarioController.adicionarDiaTrabalhado.bind(funcionarioController));
 funcionarioRoutes.put('/atualizar/:id', Authenticated, funcionarioController.atualizarFuncionario.bind(funcionarioController));
 funcionarioRoutes.delete('/deletar/:id', Authenticated, funcionarioController.deletarFuncionario.bind(funcionarioController));
 
