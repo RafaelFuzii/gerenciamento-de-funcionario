@@ -1,19 +1,10 @@
 import { Router } from 'express';
-import { OrderRepository } from './order/orderRepository';
-import { OrderService } from './order/orderService';
-import { OrderController } from './order/orderController';
 import { FuncionarioRepository } from './funcionario/funcionarioReposiroty'; // Atenção ao nome do arquivo
 import { FuncionarioService } from './funcionario/funcionarioService';
 import { FuncionarioController } from './funcionario/funcionarioController';
 import { AuthService } from './authentication/authService';
 import { AuthController } from './authentication/authController';
 import { Authenticated } from './middleware/authenticated';
-
-// CONFIGURAÇÃO DAS ROTAS DE ORDERS
-const orderRoutes = Router();
-const orderRepository = new OrderRepository();
-const orderService = new OrderService(orderRepository);
-const orderController = new OrderController(orderService);
 
 // CONFIGURAÇÃO DAS ROTAS DE FUNCIONÁRIOS
 const funcionarioRoutes = Router();
@@ -37,4 +28,4 @@ funcionarioRoutes.delete('/deletar/:id', Authenticated, funcionarioController.de
 // Rotas de Autenticação
 authRoutes.post('/login', authController.handleLogin.bind(authController));
 
-export { orderRoutes, funcionarioRoutes, authRoutes };
+export { funcionarioRoutes, authRoutes };

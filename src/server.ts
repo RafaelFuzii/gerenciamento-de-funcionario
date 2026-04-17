@@ -1,7 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
-import { authRoutes, funcionarioRoutes, orderRoutes } from './routes';
+import { authRoutes, funcionarioRoutes } from './routes';
 import { errorMessage } from './errors/errorMessage';
 
 const app = express();
@@ -12,7 +12,6 @@ app.use(cors());
 app.use(express.json());
 
 // Registro de Rotas
-app.use('/orders', orderRoutes);
 app.use('/funcionarios', funcionarioRoutes);
 app.use('/auth', authRoutes);
 
